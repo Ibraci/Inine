@@ -1,0 +1,67 @@
+{% extends "layouts/master.html" %}
+
+{% block title %} Tableau de board  {% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <div class="row m-t-25">
+            <div class="col-sm-6 col-lg-4">
+                <div class="overview-item overview-item--c1">
+                    <div class="overview__inner">
+                        <div class="overview-box clearfix">
+                            <div class="icon">
+                                <i class="fa fa-bed"></i>
+                            </div>
+                            <div class="text">
+                                <h2>{{ r }}</h2>
+                                <span>Chambres</span>
+                            </div>
+                        </div>
+                        <div class="overview-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="overview-item overview-item--c2">
+                    <div class="overview__inner">
+                        <div class="overview-box clearfix">
+                            <div class="icon">
+                                <i class="fa fa-lightbulb-o"></i>
+                            </div>
+                            <div class="text">
+                                <h2>{{ b }}</h2>
+                                <span>Ampoules</span>
+                            </div>
+                        </div>
+                        <div class="overview-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="overview-item overview-item--c3">
+                    <div class="overview__inner">
+                        <div class="overview-box clearfix">
+                            <div class="icon">
+                                <i class="fa fa-plug"></i>
+                            </div>
+                            <div class="text">
+                                <h2>{{ p }}</h2>
+                                <span>Prises</span>
+                            </div>
+                        </div>
+                        <div class="overview-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">Consomations</h3>
+                <canvas id="team-chart"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}

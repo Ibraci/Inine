@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html lang="fr">
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Inine - Prendre le contrôle de vos biens via IoT">
+    <meta name="author" content="Ibraci Links (hello@ibracilinks.com)">
+    <meta name="keywords" content="Inine - IoT">
+
+    <!-- Title Page-->
+    <title>{% block title %}  {% endblock %} - iNINE</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/images/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/images/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/images/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/images/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/images/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/images/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/images/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/images/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'assets/images/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/images/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon/favicon-16x16.png' %}">
+
+    <!-- Fontfaces CSS-->
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai:500" rel="stylesheet">
+    <link href="{% static 'assets/css/font-face.css' %}" rel="stylesheet" media="all">
+        <link href="{% static 'assets/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'assets/vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'assets/vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'assets/vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="/">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="Inine" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="has-sub"><a class="js-arrow" href="/"><i class="fas fa-tachometer-alt"></i>Tableau de board</a></li>
+                        <li class="has-sub"><a class="js-arrow" href="/rooms"><i class="fas fa-bed"></i>Chambres</a></li>
+                        <li class="has-sub"><a class="js-arrow" href="/plugs"><i class="fas fa-plug"></i>Prises</a></li>
+                        <li class="has-sub"><a class="js-arrow" href="/bulbs"><i class="fas fa-lightbulb-o"></i>Ampoules</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="{% static 'assets/images/logo.png' %}" alt="Inine" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="has-sub"><a class="js-arrow" href="/"><i class="fas fa-tachometer-alt"></i>Tableau de board</a></li>
+                        <li class="has-sub"><a class="js-arrow" href="#"><i class="fas fa-cogs"></i>Inine Contrôle</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li class="has-sub"><a class="js-arrow" href="/rooms"><i class="fas fa-bed"></i>Chambres</a></li>
+                                <li class="has-sub"><a class="js-arrow" href="/plugs"><i class="fas fa-plug"></i>Prises</a></li>
+                                <li class="has-sub"><a class="js-arrow" href="/bulbs"><i class="fas fa-lightbulb-o"></i>Ampoules</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <i class="fa fa-user fa-2x"></i>
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">john doe</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="{% static 'assets/images/icon/avatar-01.jpg' %}" alt="John Doe" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">john doe</a>
+                                                    </h5>
+                                                    <span class="email">johndoe@example.com</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Account
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-power"></i>Deconnexion
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% block content %}
+
+                            {% endblock content %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright &copy; {% now 'Y' %} Inine &middot; All rights reserved. Powered by <a href="https://ibracilinks.com">Ibraci Links</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'assets/vendor/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'assets/vendor/bootstrap-4.1/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'assets/vendor/slick/slick.min.js' %}">
+    </script>
+    <script src="{% static 'assets/vendor/wow/wow.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/animsition/animsition.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+    </script>
+    <script src="{% static 'assets/vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/counter-up/jquery.counterup.min.js' %}">
+    </script>
+    <script src="{% static 'assets/vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/select2/select2.min.js' %}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    {% block script %} {% endblock %}
+
+</body>
+
+</html>
+<!-- end document-->

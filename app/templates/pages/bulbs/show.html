@@ -1,0 +1,59 @@
+{% extends "layouts/master.html" %}
+
+{% block title %} Les prises {% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <h2 class="title-1 m-b-25">Toutes les prises</h2>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Chambre</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bulb.id }}</td>
+                        <td>{{ bulb.name }}</td>
+                        <td>{% for i in bulb.room.all %}{{ i.name }}{% endfor %}</td>
+                        <td>
+                            {% if bulb.status  %}
+                                <span class="badge badge-success">Allumé</span>
+                            {% else %}
+                                <span class="badge badge-danger">Eteint</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form style="display:inline;" action="/bulbs/checked/{{ bulb.id }}" method="POST" id="checked">
+                                {% csrf_token %}
+                                <label class="switch switch-3d switch-primary mr-3">
+                                    <input type="checkbox" class="switch-input" name="status" {% if bulb.status %} checked="true" {% endif %} >
+                                    <span class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                                <input type="hidden" name="name{{bulb.id}}">
+                            </form>
+                            <a title="Modifier" href="/bulbs/edit/{{ bulb.id }}" class="btn btn-warning"><i class="fa fa-edit"></i> </a>
+                            <a href="/bulbs/destroy/{{ bulb.id }}" class="btn btn-danger"><i class="fa fa-trash"></i> </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $( "input[type=checkbox]").on( "change", function () {
+            document.getElementById("checked").submit();
+        });
+    </script>
+
+{% endblock %}

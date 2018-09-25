@@ -1,0 +1,76 @@
+{% extends "layouts/master.html" %}
+
+{% block title %} {{ room.name }} {% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <center><h2 class="title-1 m-b-25">{{ room.name }}</h2></center>
+    </div>
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+        <h4 class="title-3 m-b-25">Les prises</h2>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Chambre</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plug in plugs %}
+                        <tr>
+                            <td>{{ plug.name }}</td>
+                            <td>{% for i in plug.room.all %}{{ i.name }}{% endfor %}</td>
+                            <td>
+                                {% if plug.status  %}
+                                    <span class="badge badge-success">Allumé</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Eteint</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/plugs/show/{{ plug.id }}" class="btn btn-primary"><i class="fa fa-eye"></i> </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+        <h4 class="title-3 m-b-25">Les ampoules</h2>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Chambre</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bulb in bulbs %}
+                        <tr>
+                            <td>{{ bulb.name }}</td>
+                            <td>{% for i in bulb.room.all %}{{ i.name }}{% endfor %}</td>
+                            <td>
+                                {% if bulb.status  %}
+                                    <span class="badge badge-success">Allumé</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Eteint</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/bulbs/show/{{ bulb.id }}" class="btn btn-primary"><i class="fa fa-eye"></i> </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
