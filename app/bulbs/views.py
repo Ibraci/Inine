@@ -6,10 +6,8 @@ from nanpy import (ArduinoApi, SerialManager)
 # Create your views here.
 def index(request):
     bulbs = Bulb.objects.all()
-
-    connect = Bulb.objects.get(pk=1)
-
     rooms = Room.objects.all()
+    connect = Bulb.objects.get(pk=1)
 
     return render(request, 'pages/bulbs/index.html', {'bulbs': bulbs, 'rooms':rooms, 'connect':connect})
 
