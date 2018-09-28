@@ -1,0 +1,27 @@
+{% extends "layouts/master.html" %}
+
+{% block title %} Modifier  {% endblock %}
+
+
+{% block content %}
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Ajouter une chambre</h3>
+                </div>
+                <hr>
+                <form action="/rooms/update/{{ room.id }}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name" class="control-label mb-1">Nom de la chambre</label>
+                        <input id="name" name="name" type="text" value="{{ room.name }}" class="form-control" autofocus>
+                    </div>
+                    <div>
+                        <input type="submit" name="" value="Ajouter" class="btn btn-lg btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "layouts/master.html" %}
+
+{% block title %} Les ampoules {% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <h2 class="title-1 m-b-25">Toutes les ampoules</h2>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Chambre</th>
+                        <th>Port</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bulb in bulbs %}
+                        <tr>
+                            <td>{{ bulb.id }}</td>
+                            <td>{{ bulb.name }}</td>
+                            <td>{% for i in bulb.room.all %}{{ i.name }}{% endfor %}</td>
+                            <td>{{ bulb.port }}</td>
+                            <td>
+                                {% if bulb.status  %}
+                                    <span class="badge badge-success">Allumé</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Eteint</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/bulbs/show/{{ bulb.id }}" class="btn btn-primary"><i class="fa fa-eye"></i> </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Ajouter une ampoule</h3>
+                </div>
+                <hr>
+                <form action="/bulbs/store" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name" class="control-label mb-1">Nom de l'ampoule</label>
+                        <input id="name" name="name" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="port" class="control-label mb-1">Numero du port</label>
+                        <input id="port" name="port" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="port_connect" class="control-label mb-1">Numero du port de connection</label>
+                        <input id="port_connect" name="port_connect" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="room" class="control-label mb-1">Nom de la chambre associé</label>
+                        <select name="room" id="room" class="form-control-lg form-control">
+                            <option disabled selected>--------</option>
+                            {% for room in rooms %}
+                                <option value="{{ room.id }}">{{ room.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" name="" value="Ajouter" class="btn btn-lg btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table">
+                <tr>
+                    <td>Basculer en mode manuel</td>
+                    <td>
+                        <form style="display:inline;" action="/bulbs/connect" method="POST" id="connect">
+                            {% csrf_token %}
+                            <label class="switch switch-3d switch-primary mr-3">
+                                <input type="checkbox" class="switch-input" name="connect" {% if connect.connect %} checked="true" {% endif %} >
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                            <input type="hidden" name="name{{bulb.id}}">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $( "input[type=checkbox]").on( "change", function () {
+            document.getElementById("connect").submit();
+        });
+    </script>
+
+{% endblock %}
