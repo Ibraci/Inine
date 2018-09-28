@@ -1,18 +1,20 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from rooms.models import Room
 from rooms.models import Plug
 from rooms.models import Bulb
 from nanpy import (ArduinoApi, SerialManager)
 
 # Create your views here.
+@login_required
 def index(request):
     plugs = Plug.objects.all()
     p = Plug.objects.all()
     rooms = Room.objects.all()
-    r = Plug.objects.filter(room=rooms)
 
-    return render(request, 'pages/plugs/index.html', {'r': r, 'plugs': plugs, 'rooms':rooms, 'p':p})
+    return render(request, 'pages/plugs/index.html', {'plugs': plugs, 'rooms':rooms, 'p':p})
 
+@login_required
 def store(request):
     if request.method == 'POST':
         plug = Plug()
@@ -22,6 +24,7 @@ def store(request):
         plug.room.add(request.POST['room'])
     return redirect('/plugs')
 
+@login_required
 def show(request, id):
     plug = Plug.objects.get(pk=id)
     p = ''
@@ -31,6 +34,7 @@ def show(request, id):
 
     return render(request, 'pages/plugs/show.html', {'plug':plug, 'rooms':rooms, 'p': p})
 
+@login_required
 def edit(request, id):
     plug = Plug.objects.get(pk=id)
     p = ''
@@ -40,6 +44,7 @@ def edit(request, id):
 
     return render(request, 'pages/plugs/edit.html', {'plug':plug, 'rooms':rooms, 'p': p})
 
+@login_required
 def update(request, id):
     if request.method == 'POST':
         Plug.objects.select_related().filter(pk=id).update(name=request.POST['name'], port=request.POST['port'])
@@ -49,12 +54,14 @@ def update(request, id):
 
     return redirect('/plugs')
 
+@login_required
 def destroy(request, id):
     plug = Plug.objects.get(pk=id)
     plug.delete()
 
     return redirect('/plugs')
 
+@login_required
 def checked(request, id):
     plug = Plug.objects.get(pk=id)
     port = plug.port

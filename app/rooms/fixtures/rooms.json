@@ -1,0 +1,169 @@
+[
+{
+    "model": "rooms.room",
+    "pk": 1,
+    "fields": {
+        "name": "Chambre 1",
+        "created_at": "2018-09-24T21:14:38.498Z"
+    }
+},
+{
+    "model": "rooms.room",
+    "pk": 2,
+    "fields": {
+        "name": "Chambre 2",
+        "created_at": "2018-09-24T21:14:42.204Z"
+    }
+},
+{
+    "model": "rooms.room",
+    "pk": 3,
+    "fields": {
+        "name": "Cuisine",
+        "created_at": "2018-09-24T21:15:03.810Z"
+    }
+},
+{
+    "model": "rooms.room",
+    "pk": 4,
+    "fields": {
+        "name": "Toilette",
+        "created_at": "2018-09-24T21:15:09.123Z"
+    }
+},
+{
+    "model": "rooms.room",
+    "pk": 5,
+    "fields": {
+        "name": "Salon",
+        "created_at": "2018-09-24T21:15:13.531Z"
+    }
+},
+{
+    "model": "rooms.plug",
+    "pk": 1,
+    "fields": {
+        "name": "Prise",
+        "status": true,
+        "port": 11,
+        "created_at": "2018-09-24T21:20:46.328Z",
+        "room": [
+            1
+        ]
+    }
+},
+{
+    "model": "rooms.plug",
+    "pk": 2,
+    "fields": {
+        "name": "Prise",
+        "status": true,
+        "port": 12,
+        "created_at": "2018-09-24T21:20:57.902Z",
+        "room": [
+            2
+        ]
+    }
+},
+{
+    "model": "rooms.plug",
+    "pk": 3,
+    "fields": {
+        "name": "Prise",
+        "status": false,
+        "port": 10,
+        "created_at": "2018-09-24T21:21:10.340Z",
+        "room": [
+            3
+        ]
+    }
+},
+{
+    "model": "rooms.plug",
+    "pk": 4,
+    "fields": {
+        "name": "Prise",
+        "status": false,
+        "port": 9,
+        "created_at": "2018-09-24T21:21:27.113Z",
+        "room": [
+            5
+        ]
+    }
+},
+{
+    "model": "rooms.bulb",
+    "pk": 1,
+    "fields": {
+        "name": "Ampoule",
+        "status": false,
+        "connect": false,
+        "port": 29,
+        "port_connect": 28,
+        "created_at": "2018-09-24T21:16:03.414Z",
+        "room": [
+            1
+        ]
+    }
+},
+{
+    "model": "rooms.bulb",
+    "pk": 2,
+    "fields": {
+        "name": "Ampoule",
+        "status": false,
+        "connect": false,
+        "port": 31,
+        "port_connect": 30,
+        "created_at": "2018-09-24T21:16:19.789Z",
+        "room": [
+            2
+        ]
+    }
+},
+{
+    "model": "rooms.bulb",
+    "pk": 3,
+    "fields": {
+        "name": "Ampoule",
+        "status": false,
+        "connect": false,
+        "port": 27,
+        "port_connect": 26,
+        "created_at": "2018-09-24T21:16:54.076Z",
+        "room": [
+            3
+        ]
+    }
+},
+{
+    "model": "rooms.bulb",
+    "pk": 4,
+    "fields": {
+        "name": "Ampoule",
+        "status": false,
+        "connect": false,
+        "port": 33,
+        "port_connect": 32,
+        "created_at": "2018-09-24T21:17:08.594Z",
+        "room": [
+            4
+        ]
+    }
+},
+{
+    "model": "rooms.bulb",
+    "pk": 5,
+    "fields": {
+        "name": "Ampoule",
+        "status": false,
+        "connect": false,
+        "port": 25,
+        "port_connect": 24,
+        "created_at": "2018-09-24T21:17:29.186Z",
+        "room": [
+            5
+        ]
+    }
+}
+]

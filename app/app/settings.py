@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'accounts',
     'rooms',
     'bulbs',
     'plugs',
@@ -52,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTH_USER_MODEL = 'accounts.Account'
+LOGIN_URL = '/account/login'
 
 ROOT_URLCONF = 'app.urls'
 

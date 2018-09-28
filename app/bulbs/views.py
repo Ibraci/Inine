@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from rooms.models import Room
 from rooms.models import Bulb
 from nanpy import (ArduinoApi, SerialManager)
 
 # Create your views here.
+@login_required
 def index(request):
     bulbs = Bulb.objects.all()
-
-    connect = Bulb.objects.get(pk=1)
-
     rooms = Room.objects.all()
+    connect = Bulb.objects.get(pk=1)
 
     return render(request, 'pages/bulbs/index.html', {'bulbs': bulbs, 'rooms':rooms, 'connect':connect})
 
+@login_required
 def store(request):
     if request.method == 'POST':
         bulb = Bulb()
@@ -23,6 +24,7 @@ def store(request):
         bulb.room.add(request.POST['room'])
     return redirect('/bulbs')
 
+@login_required
 def show(request, id):
     bulb = Bulb.objects.get(pk=id)
     b = ''
@@ -32,6 +34,7 @@ def show(request, id):
 
     return render(request, 'pages/bulbs/show.html', {'bulb':bulb, 'rooms':rooms, 'b': b})
 
+@login_required
 def edit(request, id):
     bulb = Bulb.objects.get(pk=id)
     b = ''
@@ -41,6 +44,7 @@ def edit(request, id):
 
     return render(request, 'pages/bulbs/edit.html', {'bulb':bulb, 'rooms':rooms, 'b': b})
 
+@login_required
 def update(request, id):
     if request.method == 'POST':
         Bulb.objects.select_related().filter(pk=id).update(name=request.POST['name'], port=request.POST['port'], port_connect=request.POST['port_connect'])
@@ -50,12 +54,14 @@ def update(request, id):
 
     return redirect('/bulbs')
 
+@login_required
 def destroy(request, id):
     bulb = Bulb.objects.get(pk=id)
     bulb.delete()
 
     return redirect('/bulbs')
 
+@login_required
 def checked(request, id):
     bulb = Bulb.objects.get(pk=id)
     port = bulb.port
@@ -77,6 +83,7 @@ def checked(request, id):
         a.digitalWrite(ledPin, ledState)
     return redirect('/bulbs')
 
+@login_required
 def connect(request):
     connection = SerialManager()
     a = ArduinoApi(connection = connection)

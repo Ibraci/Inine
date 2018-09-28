@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="col-lg-9">
-        <h2 class="title-1 m-b-25">Toutes les prises</h2>
+        <h2 class="title-1 m-b-25">{{ bulb.name }} - {% for i in bulb.room.all %}{{ i.name }}{% endfor %}</h2>
         <div class="table-responsive table--no-card m-b-40">
             <table class="table table-borderless table-striped table-earning">
                 <thead>

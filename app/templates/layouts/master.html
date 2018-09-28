@@ -120,31 +120,26 @@
                                             <i class="fa fa-user fa-2x"></i>
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">{{ user.full_name }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src="{% static 'assets/images/icon/avatar-01.jpg' %}" alt="John Doe" />
-                                                    </a>
-                                                </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">{{ user.full_name }}</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">{{ user.email }}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account
+                                                    <a href="/account/profile">
+                                                        <i class="zmdi zmdi-account"></i>Mon compte
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="/account/logout">
                                                     <i class="zmdi zmdi-power"></i>Deconnexion
                                                 </a>
                                             </div>
