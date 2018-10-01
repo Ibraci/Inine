@@ -32,8 +32,8 @@ class AccountManager(BaseUserManager):
         account = self.create_account (
             email,
             password=password,
-            staff = True,
-            admin = True
+            #staff = True,
+            #admin = True
         )
         return account
 
