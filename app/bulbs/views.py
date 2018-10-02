@@ -66,47 +66,53 @@ def checked(request, id):
     bulb = Bulb.objects.get(pk=id)
     port = bulb.port
     ledPin = port
-    connection = SerialManager()
-    a = ArduinoApi(connection = connection)
-    a.pinMode(ledPin, a.OUTPUT)
-    ledState = a.LOW
-    if request.method == 'POST':
-        status = request.POST.get('status')
-        if status == 'on':
-            ledState = a.HIGH
-            status = True
-        else:
-            ledState = a.LOW
-            status = False
+    try:
+        connection = SerialManager()
+        a = ArduinoApi(connection = connection)
+        a.pinMode(ledPin, a.OUTPUT)
+        ledState = a.LOW
+        if request.method == 'POST':
+            status = request.POST.get('status')
+            if status == 'on':
+                ledState = a.HIGH
+                status = True
+            else:
+                ledState = a.LOW
+                status = False
 
-        Bulb.objects.select_related().filter(pk=id).update(status=status)
-        a.digitalWrite(ledPin, ledState)
-    return redirect('/bulbs')
+            Bulb.objects.select_related().filter(pk=id).update(status=status)
+            a.digitalWrite(ledPin, ledState)
+        return redirect('/bulbs')
+    except:
+        return redirect('/error/103')
 
 @login_required
 def connect(request):
-    connection = SerialManager()
-    a = ArduinoApi(connection = connection)
-    ledState = a.LOW
+    try:
+        connection = SerialManager()
+        a = ArduinoApi(connection = connection)
+        ledState = a.LOW
 
-    if request.method == 'POST':
-        connect = request.POST.get('connect')
-        if connect == 'on':
-            value = True
-            status = True
-            ledState = a.HIGH
-        else:
-            value = False
-            status = False
-            ledState = a.LOW
+        if request.method == 'POST':
+            connect = request.POST.get('connect')
+            if connect == 'on':
+                value = True
+                status = True
+                ledState = a.HIGH
+            else:
+                value = False
+                status = False
+                ledState = a.LOW
 
-        Bulb.objects.all().update(connect=value, status=status)
-        bulbs = Bulb.objects.all()
-        for bulb in bulbs:
-            ledPin = bulb.port_connect
-            ledPin1 = bulb.port
-            a.pinMode(ledPin, a.OUTPUT)
-            a.pinMode(ledPin1, a.OUTPUT)
-            a.digitalWrite(ledPin, ledState)
-            a.digitalWrite(ledPin1, ledState)
-    return redirect('/bulbs')
+            Bulb.objects.all().update(connect=value, status=status)
+            bulbs = Bulb.objects.all()
+            for bulb in bulbs:
+                ledPin = bulb.port_connect
+                ledPin1 = bulb.port
+                a.pinMode(ledPin, a.OUTPUT)
+                a.pinMode(ledPin1, a.OUTPUT)
+                a.digitalWrite(ledPin, ledState)
+                a.digitalWrite(ledPin1, ledState)
+        return redirect('/bulbs')
+    except:
+        return redirect('/error/103')

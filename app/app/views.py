@@ -9,7 +9,7 @@ def home(request):
         p = Plug.objects.count()
         return render(request, 'pages/home.html', {'r': r, 'b': b, 'p': p})
     else:
-        return render(request, 'auth/login.html')
+        return redirect('/account/login')
 
 def store(request):
     pass

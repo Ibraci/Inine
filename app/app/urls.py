@@ -18,9 +18,13 @@ from django.urls import include, path
 
 from . import views
 
+handler404 = 'errors.views.error404'
+handler500 = 'errors.views.error500'
+
 urlpatterns = [
     path('', views.home),
     path('account/', include('accounts.urls')),
+    path('error/', include('errors.urls')),
     path('rooms/', include('rooms.urls')),
     path('bulbs/', include('bulbs.urls')),
     path('plugs/', include('plugs.urls')),

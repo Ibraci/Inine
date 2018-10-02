@@ -66,19 +66,22 @@ def checked(request, id):
     plug = Plug.objects.get(pk=id)
     port = plug.port
     ledPin = port
-    connection = SerialManager()
-    a = ArduinoApi(connection = connection)
-    a.pinMode(ledPin, a.OUTPUT)
-    ledState = a.LOW
-    if request.method == 'POST':
-        status = request.POST.get('status')
-        if status == 'on':
-            ledState = a.LOW
-            status = True
-        else:
-            ledState = a.HIGH
-            status = False
+    try:
+        connection = SerialManager()
+        a = ArduinoApi(connection = connection)
+        a.pinMode(ledPin, a.OUTPUT)
+        ledState = a.LOW
+        if request.method == 'POST':
+            status = request.POST.get('status')
+            if status == 'on':
+                ledState = a.LOW
+                status = True
+            else:
+                ledState = a.HIGH
+                status = False
 
-        Plug.objects.select_related().filter(pk=id).update(status=status)
-        a.digitalWrite(ledPin, ledState)
-    return redirect('/plugs')
+            Plug.objects.select_related().filter(pk=id).update(status=status)
+            a.digitalWrite(ledPin, ledState)
+        return redirect('/plugs')
+    except:
+        return redirect('/error/103')
