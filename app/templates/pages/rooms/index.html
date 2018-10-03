@@ -43,7 +43,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="name" class="control-label mb-1">Nom de la chambre</label>
-                        <input id="name" name="name" type="text" class="form-control">
+                        <input id="name" name="name" type="text" class="form-control" required min="2">
                     </div>
                     <div>
                         <input type="submit" name="" value="Ajouter" class="btn btn-lg btn-info">

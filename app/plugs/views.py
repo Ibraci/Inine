@@ -18,11 +18,14 @@ def index(request):
 def store(request):
     if request.method == 'POST':
         plug = Plug()
-        plug.name = request.POST['name']
-        plug.port = request.POST['port']
-        plug.save()
-        plug.room.add(request.POST['room'])
-    return redirect('/plugs')
+        if request.POST['name'] and request.POST['port']:
+            plug.name = request.POST['name']
+            plug.port = request.POST['port']
+            plug.save()
+            plug.room.add(request.POST['room'])
+            return redirect('/plugs')
+        else:
+            return redirect('/plugs')
 
 @login_required
 def show(request, id):

@@ -17,12 +17,15 @@ def index(request):
 def store(request):
     if request.method == 'POST':
         bulb = Bulb()
-        bulb.name = request.POST['name']
-        bulb.port = request.POST['port']
-        bulb.port_connect = request.POST['port_connect']
-        bulb.save()
-        bulb.room.add(request.POST['room'])
-    return redirect('/bulbs')
+        if request.POST['name'] and request.POST['port'] and request.POST['port_connect'] and request.POST['room']:
+            bulb.name = request.POST['name']
+            bulb.port = request.POST['port']
+            bulb.port_connect = request.POST['port_connect']
+            bulb.save()
+            bulb.room.add(request.POST['room'])
+            return redirect('/bulbs')
+        else:
+            return redirect('/bulbs')
 
 @login_required
 def show(request, id):
