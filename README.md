@@ -8,3 +8,5 @@ Author email: hello@ibracilinks.com
 website: inine.net
 Programming Languague: Python 3.6
 Framework: Django 2.1
+
+Technology used: Arduino, Raspberry, GPS Tracker
