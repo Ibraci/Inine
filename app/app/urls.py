@@ -28,5 +28,6 @@ urlpatterns = [
     path('rooms/', include('rooms.urls')),
     path('bulbs/', include('bulbs.urls')),
     path('plugs/', include('plugs.urls')),
+    # path('tracking/', include('gps.urls')),
     path('admin/', admin.site.urls),
 ]

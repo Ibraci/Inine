@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bulbs',
     'plugs',
     'errors',
+    'gps',
 ]
 
 MIDDLEWARE = [
